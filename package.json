@@ -106,12 +106,8 @@
     "react-dom": "0.14.0",
     "react-inline-css": "2.0.0",
     "react-redux": "3.1.0",
-<<<<<<< HEAD
     "react-router": "1.0.0-rc3",
-=======
-    "react-router": "1.0.0-rc2",
     "react-slick": "^0.8.0",
->>>>>>> update
     "redux": "3.0.1",
     "redux-form": "2.1.0",
     "sequelize": "3.5.0",
