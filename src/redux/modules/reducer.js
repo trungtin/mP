@@ -7,6 +7,8 @@ import counter from './counter';
 import {reducer as form} from 'redux-form';
 import info from './info';
 import widgets from './widgets';
+import movies from './movies';
+import processM from './processM';
 
 export default combineReducers({
   router: routerStateReducer,
@@ -18,5 +20,7 @@ export default combineReducers({
     counter3: counter
   }),
   info,
-  widgets
+  widgets,
+  movies,
+  processM: processM
 });

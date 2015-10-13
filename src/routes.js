@@ -10,6 +10,8 @@ import {
     LoginSuccess,
     Survey,
     NotFound,
+    Movie,
+    ProcessM
   } from 'containers';
 
 export default (store) => {
@@ -27,6 +29,9 @@ export default (store) => {
       <Route path="/widgets" component={Widgets}/>
       <Route path="/about" component={About}/>
       <Route path="/login" component={Login}/>
+      <Route path="/movie" component={Movie}/>
+      <Route path="/processm" component={ProcessM}/>
+      //<Route component={RequireLogin} onEnter={RequireLogin.onEnter(store)}>
       <Route onEnter={requireLogin}>
         <Route path="/chat" component={Chat}/>
         <Route path="/loginSuccess" component={LoginSuccess}/>

@@ -1,9 +1,10 @@
-const LOAD = 'my-app/info/LOAD';
-const LOAD_SUCCESS = 'my-app/info/LOAD_SUCCESS';
-const LOAD_FAIL = 'my-app/info/LOAD_FAIL';
+const LOAD = 'my-app/process/LOAD';
+const LOAD_SUCCESS = 'my-app/process/LOAD_SUCCESS';
+const LOAD_FAIL = 'my-app/process/LOAD_FAIL';
 
 const initialState = {
-  loaded: false
+  loaded: false,
+  recents: []
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -33,12 +34,12 @@ export default function reducer(state = initialState, action = {}) {
 }
 
 export function isLoaded(globalState) {
-  return globalState.info && globalState.info.loaded;
+  return globalState.processM && globalState.processM.loaded;
 }
 
 export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadInfo')
+    promise: (client) => client.get('/movie/process')
   };
 }

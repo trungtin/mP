@@ -23,6 +23,8 @@ import getRoutes from './routes';
 import getStatusFromRoutes from './helpers/getStatusFromRoutes';
 import { load as loadAuth } from './redux/modules/auth';
 
+import winston from 'winston';
+
 const pretty = new PrettyError();
 const app = new Express();
 const server = new http.Server(app);
@@ -40,6 +42,12 @@ app.use(require('serve-static')(path.join(__dirname, '..', 'static')));
 app.use('/api', (req, res) => {
   proxy.web(req, res);
 });
+
+winston.add(winston.transports.File, {
+    filename: 'exception.log',
+    handleExceptions: true,
+    humanReadableUnhandledException: true
+  });
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {

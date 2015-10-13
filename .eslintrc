@@ -18,7 +18,12 @@
     "comma-dangle": 0,  // not sure why airbnb turned this on. gross!
     "indent": [2, 2, {"SwitchCase": 1}],
     "no-console": 0,
-    "no-alert": 0
+    "no-alert": 0,
+    // My rules
+    "prefer-const": 1,
+    "no-unused-vars": 1,
+    "id-length": 1,
+    "space-infix-ops": 1
   },
   "plugins": [
     "react"

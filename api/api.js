@@ -8,6 +8,8 @@ import * as actions from './actions/index';
 import PrettyError from 'pretty-error';
 import http from 'http';
 import SocketIo from 'socket.io';
+import Passport from './actions/Auth/auth'
+import logger from './lib/logger';
 
 const pretty = new PrettyError();
 const app = express();
@@ -23,9 +25,10 @@ app.use(session({
   saveUninitialized: false,
   cookie: { maxAge: 60000 }
 }));
+app.use(Passport().initialize());
+app.use(Passport().session());
 app.use(bodyParser.json());
-
-
+logger.log('watcher', 'Hello there!')
 app.use((req, res) => {
 
   const matcher = req.url.split('?')[0].split('/').slice(1);
@@ -67,7 +70,7 @@ app.use((req, res) => {
 });
 
 
-const bufferSize = 100;
+const bufferSize = 100000;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
 
