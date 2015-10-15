@@ -26,22 +26,23 @@ export default class ResultBlock extends Component {
       video_id: result.id.$t.match(/photoid\/([0-9]+)/i)[1],
       quality: result.media$group.media$content[result.media$group.media$content.length - 1].height
     };
-    if (permanentUrl.length > 0) {this.storeValue.permannent_url = permanentUrl;}
+    if (permanentUrl.length > 0) {this.storeValue.permanent_url = permanentUrl;}
   }
   handleStore() {
-    this.checkedClassName = 'stored';
+    this.checkedClassName = require('./ResultBlock.scss').stored;
     console.log(require('util').inspect(this.storeValue));
     this.props.store(this.storeValue);
   }
   handleRemove() {
-    this.checkedClassName = 'removed';
+    this.checkedClassName = ' removed';
     console.log(require('util').inspect(this.storeValue));
     this.props.remove(this.storeValue);
   }
   render() {
     const {result} = this.props;
+    const styles = require('./ResultBlock.scss');
     return (
-      <div className={'col-md-6' + this.checkedClassName}>
+      <div className={'col-md-6' + ' ' + styles.resultBlock + ' ' + this.checkedClassName}>
         <div>
           <img src={result.media$group.media$thumbnail[result.media$group.media$thumbnail.length - 1].url} styles="margin: 0 auto;"/>
         </div>
@@ -52,7 +53,7 @@ export default class ResultBlock extends Component {
           <p>{result.title.$t}</p>
           <p>{result.media$group.media$title.$t}</p>
         </div>
-        <div className="row">
+        <div className="row" style={{padding: 10}}>
           <button type="button" className="btn btn-default btn-md" onClick={::this.handleStore}>
             <i className="fa fa-check"></i>
           </button>

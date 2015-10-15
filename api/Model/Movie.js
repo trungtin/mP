@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
   let Movie = sequelize.define('movie', {
     title: {type: DataTypes.STRING, allowNull: false},
     imdb_id: {type: DataTypes.STRING},
-    tmdb_id: {type: DataTypes.INTEGER, unique: true, allowNull: false},
+    tmdb_id: {type: DataTypes.INTEGER, unique: true},
     plot: {type: DataTypes.TEXT},
     adult: {type: DataTypes.BOOLEAN},
     release_date: {type: DataTypes.DATE},
@@ -15,7 +15,9 @@ module.exports = function (sequelize, DataTypes) {
     t_vote_count: {type: DataTypes.INTEGER},
     t_popularity: {type: DataTypes.FLOAT},
     i_vote: {type: DataTypes.FLOAT},
-    i_vote_count: {type: DataTypes.INTEGER}
+    i_vote_count: {type: DataTypes.INTEGER},
+    bluray_release_date: {type: DataTypes.DATE},
+    wait_for_release: {type: DataTypes.BOOLEAN}
   })
 
   return Movie

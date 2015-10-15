@@ -1,6 +1,9 @@
 const LOAD = 'my-app/process/LOAD';
 const LOAD_SUCCESS = 'my-app/process/LOAD_SUCCESS';
 const LOAD_FAIL = 'my-app/process/LOAD_FAIL';
+const STORE = 'my-app/process/STORE';
+const STORE_SUCCESS = 'my-app/process/STORE_SUCCESS';
+const STORE_FAIL = 'my-app/process/STORE_FAIL';
 
 const initialState = {
   loaded: false,
@@ -28,6 +31,24 @@ export default function reducer(state = initialState, action = {}) {
         loaded: false,
         error: action.error
       };
+    case STORE:
+      return {
+        ...state,
+        storing: true
+      };
+    case STORE_SUCCESS:
+      return {
+        ...state,
+        storing: false,
+        stored: true
+      };
+    case STORE_FAIL:
+      return {
+        ...state,
+        storing: false,
+        stored: false,
+        error: action.error
+      };
     default:
       return state;
   }
@@ -41,5 +62,14 @@ export function load() {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/movie/process')
+  };
+}
+
+export function store(storeObject) {
+  return {
+    types: [STORE, STORE_SUCCESS, STORE_FAIL],
+    promise: (client) => client.post('/movie/store', {
+      data: storeObject
+    })
   };
 }

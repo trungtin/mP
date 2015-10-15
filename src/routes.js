@@ -31,13 +31,12 @@ export default (store) => {
       <Route path="/login" component={Login}/>
       <Route path="/movie" component={Movie}/>
       <Route path="/processm" component={ProcessM}/>
-      //<Route component={RequireLogin} onEnter={RequireLogin.onEnter(store)}>
       <Route onEnter={requireLogin}>
         <Route path="/chat" component={Chat}/>
         <Route path="/loginSuccess" component={LoginSuccess}/>
       </Route>
       <Route path="/survey" component={Survey}/>
-      <Route path="*" component={NotFound} status={404} />
+      <Route path="*" component={NotFound} status={404}/>
     </Route>
   );
 };

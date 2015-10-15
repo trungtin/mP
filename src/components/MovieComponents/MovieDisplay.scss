@@ -1,0 +1,22 @@
+.display {
+	margin: 10px auto;
+	color: white;
+	text-shadow: 2px 3px 5px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.7);
+	height: 90%;
+	border: solid 1px #EFEFEF;
+	box-shadow: 0px 0px 10px #000 inset;
+	p {
+		font-size: 1.8rem;
+	}
+	h1 {
+		font-size: 4rem;
+	}
+}
+.poster {
+	padding: 5vh 3vw;
+	img {
+		border-radius: 8px 8px 8px 8px;
+		border: solid 1px #6d6d6d;
+		box-shadow: 4px 4px 5px black;
+	}
+}

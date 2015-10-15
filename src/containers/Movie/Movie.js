@@ -1,5 +1,4 @@
 import React, {Component, PropTypes} from 'react';
-import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import * as movieActions from 'redux/modules/movies';
 import {isLoaded as isMoviesLoaded, load as loadMovies} from 'redux/modules/movies';
@@ -13,9 +12,7 @@ import {MovieDisplay, MovieCarousel, MoviePlayer} from 'components';
     playing: state.movies.playing,
     error: state.movies.error
   }),
-  dispatch => ({
-    ...bindActionCreators(movieActions, dispatch)
-  })
+  movieActions
 )
 export default class Movies extends Component {
   static propTypes = {
@@ -27,13 +24,12 @@ export default class Movies extends Component {
     playing: PropTypes.object
   }
   static fetchData(getState, dispatch) {
-    console.log('movie fetchData is called');
     if (!isMoviesLoaded(getState())) {
       return dispatch(loadMovies());
     }
   }
   render() {
-    const {movies, display, displaying, play, playing} = this.props;
+    const {movies, display, displaying, play, playing, load} = this.props;
     return (
       <div>
         { displaying &&
@@ -43,7 +39,7 @@ export default class Movies extends Component {
           playing &&
           <MoviePlayer movie={playing} />
         }
-        <MovieCarousel movies={movies} display={display} />
+        <MovieCarousel movies={movies} display={display} load={load}/>
       </div>
     );
   }

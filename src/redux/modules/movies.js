@@ -1,3 +1,5 @@
+import qs from 'query-string';
+
 const LOAD = 'my-app/movies/LOAD';
 const LOAD_SUCCESS = 'my-app/movies/LOAD_SUCCESS';
 const LOAD_FAIL = 'my-app/movies/LOAD_FAIL';
@@ -12,7 +14,6 @@ const initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
-      console.log('------------------------loading-----------------------------');
       return {
         ...state,
         loading: true
@@ -22,8 +23,11 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         loading: false,
         loaded: true,
-        data: action.result,
-        displaying: false
+        data: [
+          ...(state.data || []),
+          ...action.result
+        ],
+        displaying: null
       };
     case LOAD_FAIL:
       return {
@@ -33,10 +37,9 @@ export default function reducer(state = initialState, action = {}) {
         error: action.error
       };
     case DISPLAY:
-      if (action.movie.id === state.displaying.id) {
+      if (state.displaying && action.movie.id === state.displaying.id) {
         return {
-          ...state,
-          displaying: null
+          ...state
         };
       }
       return {
@@ -64,11 +67,20 @@ export function isLoaded(globalState) {
   return globalState.movies && globalState.movies.loaded;
 }
 
-export function load() {
-  return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/movie/load')
-  };
+export function load(requireObject) {
+  if (requireObject) {
+    const {loadBy, limit, offset} = requireObject;
+    console.log(require('util').inspect(requireObject));
+    return {
+      types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+      promise: (client) => client.get('/movie/load?' + qs.stringify({by: loadBy || '', limit: limit || '', offset: offset || ''}))
+    };
+  } else {
+    return {
+      types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
+      promise: (client) => client.get('/movie/load')
+    };
+  }
 }
 
 export function display(movie) {

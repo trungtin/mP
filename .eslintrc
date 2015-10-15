@@ -23,7 +23,8 @@
     "prefer-const": 1,
     "no-unused-vars": 1,
     "id-length": 1,
-    "space-infix-ops": 1
+    "space-infix-ops": 1,
+    "no-else-return": 0
   },
   "plugins": [
     "react"

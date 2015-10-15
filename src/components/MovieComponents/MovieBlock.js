@@ -14,8 +14,11 @@ export default class MovieBlock extends Component {
     const styles = require('./MovieBlock.scss');
     const imgSrc = ImgOption.base_url + ImgOption.poster_sizes[2] + movie.poster_path;
     return (
-      <div onClick={::this.handleClick}>
-        <img src={imgSrc} alt={movie.title + ' poster'} styles="margin: 0 auto;"/>
+      <div className={styles.movieBlock}>
+        <div style={{textAlign: 'center'}}>
+          <img src={imgSrc} alt={movie.title + ' poster'} style={{margin: '0 auto'}}/>
+          <i onClick={::this.handleClick} className={'fa fa-plus-circle fa-4x ' + styles.plusCircle} style={{position: 'absolute', margin: 'auto', top: '50%', transform: 'translate(-50%, -50%)'}} />
+        </div>
         <div className={styles.starRatings}>
           <div className={styles.starRatingsTop} style={{width: (movie.t_vote * 10) + '%'}}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
           <div className={styles.starRatingsBottom}><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>

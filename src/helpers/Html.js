@@ -48,6 +48,9 @@ export default class Html extends Component {
           <script dangerouslySetInnerHTML={{__html: `window.__data=${serialize(store.getState())};`}} />
           <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
           <script src={assets.javascript.main}/>
+          <script src={cdn + 'react/0.14.0/react.min.js'}/>
+          <script src={cdn + 'react/0.14.0/react-dom.min.js'}/>
+          <script src={cdn + 'react-bootstrap/0.27.1/react-bootstrap.min.js'}/>
           <script src="//vjs.zencdn.net/4.12/video.js"></script>
         </body>
       </html>

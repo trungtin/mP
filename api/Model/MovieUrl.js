@@ -7,12 +7,12 @@ export default function (Sequelize, DataTypes) {
 		user_id: {type: DataTypes.STRING, allowNull: false},
 		quality: {type: DataTypes.INTEGER},
 		permanent_url: {type: DataTypes.ARRAY(DataTypes.STRING)},
-		is_work: {type: DataTypes.BOOLEAN, default: true}
+		is_work: {type: DataTypes.BOOLEAN, defaultValue: true}
 	}, {
 		classMethods: {
 			associate: function(db){
 				MovieUrl.belongsTo(db['movie'], {
-					targetKey: 'tmdb_id'
+					targetKey: 'id'
 				})
 			}	
 		}

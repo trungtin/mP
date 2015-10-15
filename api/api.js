@@ -28,7 +28,6 @@ app.use(session({
 app.use(Passport().initialize());
 app.use(Passport().session());
 app.use(bodyParser.json());
-logger.log('watcher', 'Hello there!')
 app.use((req, res) => {
 
   const matcher = req.url.split('?')[0].split('/').slice(1);
@@ -70,7 +69,7 @@ app.use((req, res) => {
 });
 
 
-const bufferSize = 100000;
+const bufferSize = 1000;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
 
@@ -102,6 +101,10 @@ if (config.apiPort) {
       messageIndex++;
       io.emit('msg', data);
     });
+    
+    socket.on('error', err => {
+      console.log('SOCKET ERROR: ' + err);
+    })
   });
   io.listen(runnable);
 

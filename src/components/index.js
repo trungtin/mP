@@ -16,3 +16,4 @@ export MovieCarousel from './MovieComponents/MovieCarousel';
 export MovieDisplay from './MovieComponents/MovieDisplay';
 export MoviePlayer from './MovieComponents/MoviePlayer';
 export ResultBlock from './ProcessMComponents/ResultBlock';
+export Modal from './Modal/Modal';

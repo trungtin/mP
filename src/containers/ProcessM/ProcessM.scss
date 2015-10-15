@@ -1,0 +1,16 @@
+.counterBox {
+	font-size: 2rem;
+	padding: auto;
+	position: fixed;
+	bottom: 10vh;
+	right: 25vw;
+	max-width: 5vw;
+	overflow:auto; 
+	color: white;
+	background-color: deepskyblue;
+	border-radius: 10%;
+	p {
+		margin: auto 0.5rem;
+		text-align: center;
+	}
+}

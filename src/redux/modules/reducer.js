@@ -22,5 +22,5 @@ export default combineReducers({
   info,
   widgets,
   movies,
-  processM: processM
+  processM
 });
