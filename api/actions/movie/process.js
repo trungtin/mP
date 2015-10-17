@@ -1,6 +1,6 @@
 import {sequelize, Sequelize} from 'Model'
 import async from 'async'
-import __ from 'lodash'
+import _ from 'lodash'
 import logger from 'lib/logger'
 import https from 'https'
 import querystring from 'querystring'
@@ -13,7 +13,7 @@ export default function process () {
 	.catch((e) => {
 		console.log('GOT ERROR: ' + e)
 	})
-	
+
 }
 
 export function getMovieBadLink () {
@@ -29,11 +29,12 @@ export function getMovieBadLink () {
 
 function makeQueries (movie) {
 	let q = []
-	
+
 	q.push(movie.title)
 	q.push(movie.title + ' YIFY')
 	q.push(movie.title + ' ' + movie.release_date.getFullYear())
-	q.push(movie.title.replace(/\ /g, '.') + '.' + movie.release_date.getFullYear())
+	q.push(movie.title.replace(/ /g, '.') + '.' + movie.release_date.getFullYear())
+  console.log(q)
 	return {
 		meta: {
 			id: movie.id,
@@ -59,7 +60,8 @@ function buildUrls (queryOb) {
 function getData (queryOb) {
 	let Urls = queryOb.Urls
 	let results = []
-	let getDataAsync = new Promise ((resolve, reject) => {
+	return new Promise ((resolve, reject) => {
+    console.log(Urls)
 		async.each(Urls, (url, callback) => {
 			https.get({
 				hostname: 'picasaweb.google.com',
@@ -73,10 +75,11 @@ function getData (queryOb) {
 				res.on('end', () => {
 					let entry = JSON.parse(body).feed.entry
 					if (!entry) {
-						callback('Zero results, just skip it.')
+            // continue
+						callback(null)
 					}
 					let pickedEntry = entry.map((e) => {
-						return __.pick(e, ['id', 'title', 'media$group'])
+						return _.pick(e, ['id', 'title', 'media$group'])
 					})
 					results.push(...pickedEntry)
 					callback(null)
@@ -90,10 +93,15 @@ function getData (queryOb) {
 				console.log('GOT ERROR while getting data: ' + err)
 				reject(err)
 			}
-			let compactResults = __.union(results)
+      if (results.length === 0) {
+        pushToWaitLine(queryOb.meta.id)
+      }
+			let compactResults = _.union(results)
 			resolve({meta: queryOb.meta, results: compactResults})
 		})
 	})
-	
-	return getDataAsync
+}
+
+function pushToWaitLine (movieId) {
+
 }

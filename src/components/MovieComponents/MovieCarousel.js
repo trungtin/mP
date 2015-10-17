@@ -6,11 +6,12 @@ export default class MovieCarousel extends Component {
   static propTypes = {
     movies: PropTypes.array.isRequired,
     display: PropTypes.func,
-    load: PropTypes.func
+    load: PropTypes.func,
+    orderKey: PropTypes.string
   }
   loadMore(index) {
     if (index > (this.props.movies.length - 10)) {
-      this.props.load({offset: this.props.movies.length});
+      this.props.load({order: this.props.orderKey, offset: this.props.movies.length});
     }
   }
   render() {

@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as movieActions from 'redux/modules/movies';
-import {isLoaded as isMoviesLoaded, load as loadMovies} from 'redux/modules/movies';
+import {isLoaded as isMoviesLoaded, loadAll as loadMovies} from 'redux/modules/movies';
 import {MovieDisplay, MovieCarousel, MoviePlayer} from 'components';
 
 @connect(
@@ -16,10 +16,9 @@ import {MovieDisplay, MovieCarousel, MoviePlayer} from 'components';
 )
 export default class Movies extends Component {
   static propTypes = {
-    movies: PropTypes.array,
+    movies: PropTypes.object,
     load: PropTypes.func,
     display: PropTypes.func,
-    play: PropTypes.func,
     displaying: PropTypes.object,
     playing: PropTypes.object
   }
@@ -29,17 +28,23 @@ export default class Movies extends Component {
     }
   }
   render() {
-    const {movies, display, displaying, play, playing, load} = this.props;
+    const {movies, display, displaying, playing, load} = this.props;
+    const MultiCarousel = (<div>
+        <MovieCarousel movies={movies.popularity} display={display} load={load} orderKey="popularity"/>
+        <MovieCarousel movies={movies.vote} display={display} load={load} orderKey="vote"/>
+        <MovieCarousel movies={movies.releaseDate} display={display} load={load} orderKey="releaseDate"/>
+      </div>
+    );
     return (
       <div>
         { displaying &&
-          <MovieDisplay movie={displaying} play={play} />
+          <MovieDisplay movie={displaying}/>
         }
         {
           playing &&
           <MoviePlayer movie={playing} />
         }
-        <MovieCarousel movies={movies} display={display} load={load}/>
+        {MultiCarousel}
       </div>
     );
   }

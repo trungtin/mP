@@ -20,9 +20,9 @@
     "no-console": 0,
     "no-alert": 0,
     // My rules
-    "prefer-const": 1,
+    "prefer-const": 0,
     "no-unused-vars": 1,
-    "id-length": 1,
+    "id-length": 0,
     "space-infix-ops": 1,
     "no-else-return": 0
   },

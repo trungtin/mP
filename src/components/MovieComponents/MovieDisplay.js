@@ -1,13 +1,25 @@
 import React, {Component, PropTypes} from 'react';
 import ImgOption from './ImgOption';
+import {connect} from 'react-redux';
+import {getMedia} from 'redux/modules/movies';
 
+@connect(state => ({
+  media: state.movies.media
+}), {getMedia})
 export default class MovieDisplayer extends Component {
   static propTypes = {
     movie: PropTypes.object.isRequired,
-    play: PropTypes.func
+    play: PropTypes.func,
+    media: PropTypes.object,
+    getMedia: PropTypes.func
+  }
+  componentDidMount() {
+    this.props.getMedia(this.props.movie.id);
   }
   handleClick() {
-    this.props.play(this.props.movie);
+    const media = this.props.media;
+    console.log(media);
+    console.log(media.permanent_url || media.temporary_url);
   }
   render() {
     const {movie} = this.props; // eslint-disable-line no-shadow

@@ -3,81 +3,99 @@ import async from 'async'
 import http from 'http'
 import credentials from '../../credentials'
 import schedule from 'node-schedule'
+import Promise from 'bluebird'
+import _ from 'lodash'
 
 const api_key = credentials.TMDB.api_key
 
 export default function update(req) {
 	// return must be a Promise
-	return updateMovies()
+	let {order, offset} = req.query
+	return updateMovies(order, offset)
 }
 
 function updateMovies(by = 'popularity', offset = 0) {
 	let page = offset + 1
 	
-	return new Promise((resolve, reject) => {
-		(function loop() {
-			http.get({
-				hostname: 'api.themoviedb.org',
-				path: '/3/discover/movie?sort_by=' + by + '.desc&vote_average.gte=4&vote_count.gte=30&api_key='+ api_key + '&page=' + page,
-				headers: {'Accept': 'application/json'}
-			}, function (res) {
-	
-				res.setEncoding('utf8')
-				let body = ''
-				res.on('data', function(chunk) {
-					body += chunk	
-				})
-				res.on('end', function(){
-					let data = JSON.parse(body)
-					let totalPages = data.total_pages
-					console.log('--------------------------------------')
-					console.log(data.results.length)
-					console.log('--------------------------------------')
-					async.eachSeries(data.results, function(m, callback){
-						Movie.upsert({
-							title: m.title,
-							tmdb_id: m.id,
-							plot: m.overview,
-							adult: m.adult,
-							release_date: m.release_date,
-							t_vote: m.vote_average,
-							t_vote_count: m.vote_count,
-							t_popularity: m.popularity,
-							poster_path: m.poster_path,
-							backdrop_path: m.backdrop_path
-						}).then(function() {
-							callback(null)
-						}).catch(function(err){
-							console.log('Got error: ' + err)
-							callback(err)
-						})
-					}, function(err) {
-						if(err) {
-							console.error('Got error: ' + err)
-							reject(err)
-						} else {
-							if (page++ >= 8) {
-								console.log('---------------------------------------------------------'.green)
-								console.log('All data has been upserted completely'.underline.green)
-								console.log('---------------------------------------------------------'.green)
-								resolve('All done')
-							} else {
-								console.log('---------------------------------------------------------'.green)
-								console.log('This part has been upserted completely'.underline.green)
-								console.log('---------------------------------------------------------'.green)
-								loop()
-							}
-						}
-						
-					})
-				})
-			}).on('error', function (err) {
-				console.log('-----------------------ERROR-----------------------');
-				console.log(e);
-				console.log('-----------------------ERROR-----------------------');
-				reject(err)
+	let request = requestData(by, page)
+	request.then(result => {
+		let data = JSON.parse(result)
+		upsertToDatabase(data.results)
+		const totalPages = data.total_pages
+		return [data, totalPages]
+	}).spread((firstData, totalPages) => {
+		return _.range(2, totalPages + 1)
+	}).then(pageArray => {
+		pageArray.reduce((promise, page)=>{
+			return promise.then(() => {
+				return requestData(by, page)
 			})
-		})()
+				.then(body => {
+					let data = JSON.parse(body)
+					upsertToDatabase(data.results)
+				})
+		}, Promise.resolve())
 	})
-	
+	return Promise.resolve('hello')
+}
+
+var PromiseRequest = Promise.method(function(options) {
+    return new Promise(function(resolve, reject) { 
+        var request = http.request(options, function(response) {
+            // Bundle the result
+            var result = {
+                'httpVersion': response.httpVersion,
+                'httpStatusCode': response.statusCode,
+                'headers': response.headers,
+                'body': '',
+                'trailers': response.trailers,
+            };
+
+            // Build the body
+            response.on('data', function(chunk) {
+                result.body += chunk;
+            });
+
+            // Resolve the promise
+            response.on('end', function() {
+				resolve(result.body);
+			})
+        });
+
+        // Handle errors
+        request.on('error', function(error) {
+            console.log('Problem with request:', error.message);
+            reject(error);
+        });
+
+        // Must always call .end() even if there is no data being written to the request body
+        request.end();
+    });
+});
+
+function requestData (by = 'popularity', page = 1) {
+	return PromiseRequest({
+			hostname: 'api.themoviedb.org',
+			path: '/3/discover/movie?sort_by=' + by + '.desc&vote_average.gte=4&vote_count.gte=30&api_key='+ api_key + '&page=' + page,
+			headers: {'Accept': 'application/json'}
+		})
+}
+
+function upsertToDatabase(results) {
+	results.reduce((promise, result, index) => {
+		return promise.then(() => {
+			return Movie.upsert({
+				title: result.title,
+				tmdb_id: result.id,
+				plot: result.overview,
+				adult: result.adult,
+				release_date: result.release_date,
+				t_vote: result.vote_average,
+				t_vote_count: result.vote_count,
+				t_popularity: result.popularity,
+				poster_path: result.poster_path,
+				backdrop_path: result.backdrop_path
+			})
+		})
+	}, Promise.resolve())
 }
