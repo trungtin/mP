@@ -1,6 +1,9 @@
-export loadInfo from './loadInfo';
-export loadAuth from './loadAuth';
-export login from './login';
-export logout from './logout';
-export * as widget from './widget/index';
-export * as movie from './movie/index';
+export loadInfo from './loadInfo'
+export loadAuth from './loadAuth'
+export login from './login'
+export logout from './logout'
+export * as widget from './widget/index'
+export * as movie from './movie/index'
+export register from './register'
+export * as user from './user/index'
+// export subtitle from './subtitle'

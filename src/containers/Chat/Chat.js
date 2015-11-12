@@ -53,7 +53,7 @@ class Chat extends Component {
     this.setState({message: ''});
 
     socket.emit('msg', {
-      from: this.props.user.name,
+      from: this.props.user.username,
       text: msg
     });
   }

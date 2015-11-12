@@ -1,37 +1,41 @@
-import {Modal, Button} from 'react-bootstrap';
+import {Modal, Col} from 'react-bootstrap';
 import React, {Component, PropTypes} from 'react';
 
-export default class ModalButton extends Component {
+export default class MyModal extends Component {
   static propTypes = {
-    modalData: PropTypes.object.isRequired
+    modalData: PropTypes.object.isRequired,
+    children: PropTypes.array,
+    beforeClose: PropTypes.func,
+    bsSize: PropTypes.string,
+    dialogClassName: PropTypes.string
   }
   state = {
     showModal: false
   }
   close() {
+    if (this.props.beforeClose && typeof this.props.beforeClose === 'function') {
+      this.props.beforeClose();
+    }
     this.setState({showModal: false});
   }
   open() {
     this.setState({showModal: true});
   }
   render() {
-    const {showModal} = this.state;
-    const {buttonText, modalTitle, modalBody, modalFooter, modalCloseButton} = this.props.modalData;
+    const {modalTitle, modalBody, modalFooter, modalCloseButton} = this.props.modalData;
+    const {bsSize, dialogClassName} = this.props;
     return (
       <div>
-        <Button bsStyle="primary" bsSize="large" onClick={::this.open}>
-          {buttonText}
-        </Button>
-        <Modal show={this.state.showModal} onHide={::this.close}>
+        <Modal show={this.state.showModal} onHide={::this.close} bsSize={bsSize} dialogClassName={dialogClassName}>
           <Modal.Header closeButton>
-            <Modal.Title>{modalTitle}</Modal.Title>
+            {modalTitle && <Modal.Title>{modalTitle}</Modal.Title>}
           </Modal.Header>
           <Modal.Body>
             {modalBody}
           </Modal.Body>
           <Modal.Footer>
-            <div onClick={::this.close}>{modalCloseButton}</div>
-            {modalFooter}
+            {modalCloseButton && <Col md={2} mdOffset={8} onClick={::this.close}>{modalCloseButton}</Col>}
+            {modalFooter && <Col md={2}>{modalFooter}</Col>}
           </Modal.Footer>
         </Modal>
       </div>

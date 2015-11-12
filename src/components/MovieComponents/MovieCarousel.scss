@@ -1,4 +1,31 @@
 .carousel {
+	position:relative;
+	padding: 20px 0;
 	width: 85vw;
 	margin: 4vh auto;
+	background-color: rgb(245, 245, 245); 
+	// box-shadow: 0px 0px 12px 1px rgba(0,0,0,0.5);
+	// box-shadow: 0px 6px 2px -2px rgba(0,0,0,0.5), 0px -6px 2px -2px rgba(0,0,0,0.5);
+	border-radius: 4px;
+}
+.carousel:before,
+.carousel:after {
+	content:"";
+	position:absolute; 
+	z-index:-2;
+}
+.curved:before {
+	top:10px;
+	bottom:10px;
+	left:0;
+	right:50%;
+	box-shadow:0 0 25px 5px rgba(0,0,0,0.8);
+	border-radius:10px / 100px;
+}
+.curved-hz-2:before {
+	top:0;
+	bottom:0;
+	left:30px;
+	right:30px;
+	border-radius:450px / 50px;
 }

@@ -1,29 +1,72 @@
+@import 'src/sass/bits';
+@import url('https://fonts.googleapis.com/css?family=Great+Vibes|Damion|Roboto:400,500');
+$brand-size: 40px;
+
 body {
-  font-family: "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "Roboto", Helvetica, sans-serif;
 }
 .app {
+  :global(.navbar) {
+    box-shadow: 0px 10px 3px -8px #737373;
+  }
   :global(.navbar-brand) {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    font-weight: bold;
+    top: 5px;
     position:relative;
     padding-left: 50px;
+    width: 100%;
+    @include breakpoint(phablet) {
+      width: initial;
+    }
+  }
+  :global(.navbar-nav) {
+    font-weight: 500;
   }
   .brand {
     position:absolute;
-    $size: 40px;
-    top:5px;
+    top: 0;
     left:5px;
     display:inline-block;
-    background: #2d2d2d url('../Home/logo.png') no-repeat center center;
-    width: $size;
-    height: $size;
+    background: url('../Home/logo.png') no-repeat center center;
+    width: $brand-size;
+    height: $brand-size;
     background-size: 80%;
     margin: 0 10px 0 0;
-    border-radius: $size / 2;
+    border-radius: $brand-size / 2;
   }
   nav :global(.fa) {
     font-size: 2em;
     line-height: 20px;
   }
+  @media (max-width: 767px) {
+    :global(.navbar-fixed-top) {
+        position: relative;
+        top: auto;
+        :global(.navbar-brand) {
+          position: fixed;
+          z-index: 100;
+          background: #f8f8f8;
+        }
+    }
+    :global(.navbar-nav) {
+      margin-top: $brand-size;
+    }
+    body {
+        margin: 0;
+    }
+  }
 }
 .appContent {
-  margin: 100px 0; // for fixed navbar
+  margin: 0; 
+  @include breakpoint(phablet) {
+      margin: 105px 0; // for fixed navbar
+  }
+  @include breakpoint(laptop) {
+      margin: 56px 0; // for fixed navbar
+  }
+  padding: 24px 0;
+  background-color: rgb(245, 245, 245);
+  //background-image: url('../../../static/background.jpg');
 }

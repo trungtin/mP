@@ -34,7 +34,7 @@ const proxy = httpProxy.createProxyServer({
 });
 
 app.use(compression());
-app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, '..', 'static', 'favicon.png')));
 
 app.use(require('serve-static')(path.join(__dirname, '..', 'static')));
 
@@ -44,10 +44,10 @@ app.use('/api', (req, res) => {
 });
 
 winston.add(winston.transports.File, {
-    filename: 'exception.log',
-    handleExceptions: true,
-    humanReadableUnhandledException: true
-  });
+  filename: 'exception.log',
+  handleExceptions: true,
+  humanReadableUnhandledException: true
+});
 
 // added the error handling to avoid https://github.com/nodejitsu/node-http-proxy/issues/527
 proxy.on('error', (error, req, res) => {

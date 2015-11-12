@@ -1,0 +1,45 @@
+.registerPage {
+  input {
+    display: inline-block;
+    min-width: 250px; 
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    &:last-of-type {
+      margin-bottom: 25px;
+    }
+    &.valid {
+      box-shadow: 0 0 5px lawngreen;
+    }
+    &.invalid {
+      border: 1px solid red;
+      box-shadow: 0 0 5px red;
+    }
+  }
+  form {
+    margin: 30px 0;
+    :global(.btn) {
+      margin-left: 10px;
+    }
+  }
+  // #username-input {
+  //   .not-availabe-tooltip, .too-short-tooltip {
+  //     display: none;
+  //     visibility: hidden;
+  //     transition: visibility 0.5s ease-in-out;
+  //   }
+  //   input.not-available + .not-availabe-tooltip {
+  //     display: inline-block;
+  //     visibility: visible;
+  //   }
+  //   input.too-short + .too-short-tooltip {
+  //     display: inline-block;
+  //     visibility: visible
+  //   }
+  // }
+  
+  div[role="tooltip"] {
+    display: inline;
+  }
+}

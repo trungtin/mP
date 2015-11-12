@@ -2,13 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import DocumentMeta from 'react-document-meta';
-import { isLoaded as isInfoLoaded, load as loadInfo } from 'redux/modules/info';
 import { isLoaded as isAuthLoaded, load as loadAuth, logout } from 'redux/modules/auth';
-import { InfoBar } from 'components';
 import { pushState } from 'redux-router';
 
-const title = 'React Redux Example';
-const description = 'All the modern best practices in one example.';
+const title = 'mP';
+const description = '';
 const image = 'https://react-redux.herokuapp.com/logo.jpg';
 
 const meta = {
@@ -60,7 +58,7 @@ export default class App extends Component {
   componentWillReceiveProps(nextProps) {
     if (!this.props.user && nextProps.user) {
       // login
-      this.props.pushState(null, '/loginSuccess');
+      this.props.pushState(null, '/');
     } else if (this.props.user && !nextProps.user) {
       // logout
       this.props.pushState(null, '/');
@@ -69,9 +67,6 @@ export default class App extends Component {
 
   static fetchData(getState, dispatch) {
     const promises = [];
-    if (!isInfoLoaded(getState())) {
-      promises.push(dispatch(loadInfo()));
-    }
     if (!isAuthLoaded(getState())) {
       promises.push(dispatch(loadAuth()));
     }
@@ -93,40 +88,27 @@ export default class App extends Component {
           <div className="container">
             <Link to="/" className="navbar-brand">
               <div className={styles.brand}/>
-              React Redux Example
+              mP
             </Link>
 
             <ul className="nav navbar-nav">
-              {user && <li><NavbarLink to="/chat">Chat</NavbarLink></li>}
+              {/* {user && <li><NavbarLink to="/chat">Chat</NavbarLink></li>}
 
               <li><NavbarLink to="/widgets">Widgets</NavbarLink></li>
-              <li><NavbarLink to="/survey">Survey</NavbarLink></li>
+              <li><NavbarLink to="/survey">Survey</NavbarLink></li> */}
               <li><NavbarLink to="/movie">Movies</NavbarLink></li>
               <li><NavbarLink to="/processm">Process Movies</NavbarLink></li>
               <li><NavbarLink to="/about">About Us</NavbarLink></li>
               {!user && <li><NavbarLink to="/login">Login</NavbarLink></li>}
+              {!user && <li><NavbarLink to="/register">Register</NavbarLink></li>}
               {user && <li className="logout-link"><a href="/logout" onClick={::this.handleLogout}>Logout</a></li>}
             </ul>
             {user &&
-            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.name}</strong>.</p>}
-            <ul className="nav navbar-nav navbar-right">
-              <li>
-                <a href="https://github.com/erikras/react-redux-universal-hot-example"
-                   target="_blank" title="View on Github"><i className="fa fa-github"/></a>
-              </li>
-            </ul>
+            <p className={styles.loggedInMessage + ' navbar-text'}>Logged in as <strong>{user.username}</strong>.</p>}
           </div>
         </nav>
         <div className={styles.appContent}>
           {this.props.children}
-        </div>
-        <InfoBar/>
-
-        <div className="well text-center">
-          Have questions? Ask for help <a
-          href="https://github.com/erikras/react-redux-universal-hot-example/issues"
-          target="_blank">on Github</a> or in the <a
-          href="http://www.reactiflux.com/" target="_blank">#react-redux-universal</a> Slack channel.
         </div>
       </div>
     );

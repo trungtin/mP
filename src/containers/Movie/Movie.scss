@@ -1,0 +1,103 @@
+@import 'src/sass/_bits.scss';
+
+.movie-content {
+	position: relative;
+	z-index: 0;
+	margin: 0 2vw;
+	@include breakpoint(phablet) {
+		margin: 0 5vw;
+	}
+	@include breakpoint(laptop) {
+		margin: 0 7vw;
+	}
+}
+
+
+@keyframes extendedViewTransform {
+	0% {
+		width: 120%;
+	}
+	100% {
+		width: 80%;
+	}
+}
+
+.categoryName {
+	font-family: 'Damion', cursive;
+	color: #FF4081;
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	left: 0;
+	transition: all 0.5s ease-in-out;
+  //   padding: 2rem 2rem 2rem 1.5rem;
+  //   &:before {
+  //   	content: "";
+  //   	position: absolute;
+		// background: #69F0AE;
+		// clip-path: polygon(0 25%, 0 75%, 20% 100%, 90% 75%, 100% 50%, 90% 25%, 20% 0);
+		// transition: all 3s ease-in-out;
+		// top: 2px;
+		// left: 2px;
+		// right: 4px;
+		// bottom: 2px;
+  //   	filter: blur(2px);
+  //   }
+    h2 {
+		transition: all 0.5s ease-in-out;
+    	font-weight: 500;
+    	position: relative;
+    	margin: 0;
+    }
+    &.extended {
+	left: 50%;
+	color: #FF5722;
+	transition: all 0.5s ease-in-out;
+	transform: translateX(-50%);
+    // padding: 2rem 2rem 4rem 2rem;
+		&+div {
+			overflow: hidden;
+			animation: extendedViewTransform 2s forwards;
+		}
+		h2 {
+			font-size: 5rem;
+			margin-bottom: 4rem;
+		}
+		// &:before {
+		// 	background: #009688;
+		// 	clip-path: polygon(15% 15%, 0 55%, 50% 100%, 100% 55%, 85% 15%, 85% 15%, 50% 0);
+		// }
+	}
+}
+// .movieList {
+	// h2 {
+	// 	display: inline-block;
+	// 	position: relative;
+	// 	left: 0;
+	// 	transition: all 1.5s ease-in-out;
+	//     font-weight: 500;
+ //    	background-color: #2ae500;
+ //    	clip-path: polygon(0 25%, 0 75%, 20% 100%, 90% 75%, 100% 50%, 90% 25%, 20% 0);
+	//     padding: 2rem 2rem 2rem 1.5rem;
+	//     filter: blur(3px);
+	//     &:after {
+	//     	content: "";
+	//     	position: absolute;
+	// 		background: #fff;
+	// 		top: 4px;
+	// 		left: 4px;
+	// 		right: 4px;
+	// 		bottom: 4px
+	//     }
+	// }
+	// h2.extended {
+	// 	left: 50%;
+	// 	color: #FF5722;
+	// 	transition: all 1.5s ease-in-out;
+	// 	transform: translateX(-50%);
+	// 	& + div {
+	// 		overflow: hidden;
+	// 		animation: extendedViewTransform 2s forwards;
+	// 	}
+	// }
+// }

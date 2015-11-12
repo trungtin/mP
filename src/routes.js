@@ -11,7 +11,8 @@ import {
     Survey,
     NotFound,
     Movie,
-    ProcessM
+    ProcessM,
+    Register
   } from 'containers';
 
 export default (store) => {
@@ -29,8 +30,11 @@ export default (store) => {
       <Route path="/widgets" component={Widgets}/>
       <Route path="/about" component={About}/>
       <Route path="/login" component={Login}/>
+      <Route path="/register" component={Register}/>
       <Route path="/movie" component={Movie}/>
-      <Route path="/processm" component={ProcessM}/>
+      <Route path="/processm" component={ProcessM}>
+        <Route path=":action/:data(/*)" component={ProcessM}/>
+      </Route>
       <Route onEnter={requireLogin}>
         <Route path="/chat" component={Chat}/>
         <Route path="/loginSuccess" component={LoginSuccess}/>

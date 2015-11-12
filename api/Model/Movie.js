@@ -1,7 +1,6 @@
 'use strict'
 
 module.exports = function (sequelize, DataTypes) {
-
   let Movie = sequelize.define('movie', {
     title: {type: DataTypes.STRING, allowNull: false},
     imdb_id: {type: DataTypes.STRING},
@@ -17,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
     i_vote: {type: DataTypes.FLOAT},
     i_vote_count: {type: DataTypes.INTEGER},
     bluray_release_date: {type: DataTypes.DATE},
-    wait_for_release: {type: DataTypes.BOOLEAN}
+    url_state: {type: DataTypes.INTEGER, default: 0} // state = 0: no url; 1: working, 2: bad quality, 3: not official release yet.
   })
 
   return Movie

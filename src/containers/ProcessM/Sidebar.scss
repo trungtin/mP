@@ -1,0 +1,343 @@
+@import 'src/sass/_bits.scss';
+@import 'src/sass/colors';
+
+$sidebar-width-sm: 100vw;
+$sidebar-width-md: 50vw;
+$sidebar-width-lg: 30vw;
+
+li {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
+.sidebar {
+	color: white;
+	position: fixed;
+	padding: 150px 10px 0 10px;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	visibility: hidden;
+	width: $sidebar-width-sm;
+	height: 100%;
+	background: $teal;
+	-webkit-transition: all 0.5s;
+	transition: all 0.5s;
+	@include breakpoint(phablet) {
+		padding: 205px 10px 0 10px;
+		width: $sidebar-width-md;
+	}
+	@include breakpoint(laptop) {
+		padding: 156px 10px 0 10px;
+		width: $sidebar-width-lg;
+	}
+	&:after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.2);
+		content: '';
+		opacity: 1;
+		-webkit-transition: opacity 0.5s;
+		transition: opacity 0.5s;
+	}
+}
+
+.sidebarPusher {
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 99;
+	height: 100%;
+	perspective: 1000px;
+	-webkit-transition: -webkit-transform 0.5s;
+	transition: transform 0.5s;
+}
+
+.sidebarPusher::after {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 0;
+	height: 0;
+	background: rgba(0,0,0,0.2);
+	content: '';
+	opacity: 0;
+	-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+	transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+.sidebarOpen{
+	.sidebarPusher {
+		width: 100%;
+	}
+	.sidebarPusher::after {
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+	-webkit-transition: opacity 0.5s;
+	transition: opacity 0.5s;
+	}
+}
+.sidebarOpen .sidebar:after {
+	width: 0;
+	height: 0;
+	opacity: 0;
+	-webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+	transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+.sidebar {
+	visibility: visible;
+	-webkit-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+}
+
+.sidebarOpen .sidebar {
+	box-shadow: 7px 0px 3px -5px #737373;
+	visibility: visible;
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.sidebar::after {
+	display: none;
+}
+
+
+.counterButton {
+	background: $cyan;
+	font-size: 2rem;
+	position: fixed;
+	bottom: 20vh;
+	left: $sidebar-width-sm + 10vw;
+	@include breakpoint(phablet) {
+		left: $sidebar-width-md + 5vw;
+	}
+	@include breakpoint(laptop) {
+		left: $sidebar-width-lg + 2vw;
+	}
+}
+
+.sidebarOpen .counterButton {
+	@media (max-width: 767px) {
+		left: initial;
+		right: 0;
+	}
+}
+
+
+.resultList {
+	font-family: Georgia, Times, serif;
+	font-size: 15px;
+	ul {
+		li:first-of-type a{
+			border-radius: 4px 4px 0 0;
+		}
+		li:last-of-type a{
+			border-radius: 0 0 4px 4px;
+		}
+		li a {
+			display: block;
+			color: #000000;
+			background-color: #FFFFFF;
+			line-height: 30px;
+			border-bottom-style: solid;
+			border-bottom-width:1px;
+			border-bottom-color: #CCCCCC;
+			padding-left: 10px;
+			cursor: pointer;
+			&:hover {
+				color: #FFFFFF;
+				background-color: #607D8B;
+				background-repeat: repeat-x;
+			}
+			strong {
+				margin-right:10px;
+			}
+		}
+	}
+}
+
+.selectState {
+	display: inline;
+	position: relative;
+	
+	a {
+		display: inline-block;
+		text-decoration: underline;
+		color: #546E7A;
+		padding: 5px 0;
+		transition: all 0.5s ease-in-out;
+		min-width: 10px;
+	}
+	
+	&:hover a{
+		min-width: 100px;
+		text-align: center;
+		padding: 5px;
+		text-decoration: none;
+		background-color: #1DE9B6;
+	}	
+	ul {
+		display: none;
+		padding: 0;
+		position: relative;
+		color: #546E7A;
+		top: 3px;
+		left: 89px;
+		list-style: none;
+		& li[data-selected='true'] {
+			display: none;
+		}
+		& li {
+			width: 100px;
+			transition: all 0.3s ease-in-out;
+			&:hover {
+				text-align: center;
+				padding: 5px;
+				background-color: #1DE9B6;
+			}
+		}
+	}
+	
+	&:hover ul {
+		cursor: pointer;
+		display: block;
+	}
+}
+
+$menuColor: #E4644B;
+$menuItemColor: #CDDC39;
+.content {
+	box-shadow: 2px 2px 2px 0px rgba(0,0,0,0.7);
+	ul {
+		padding: 0;
+	}
+	.menu {
+		position: relative;
+
+		&:nth-last-child(n+2) .menuTitle{
+			border-bottom: 3px solid darken($menuColor, 10%);
+		}
+		& .menuTitle {
+			position: relative;
+			color: white;
+			background-color: $menuColor;
+			padding: 1.5rem 1rem;
+			margin: 0 auto;
+			cursor: pointer;
+			&:hover {
+				background-color: darken($menuColor, 10%)
+			}
+			h3 {
+				margin: 0;
+			}
+		}
+		.menuItemList {
+			.metaDisplay {
+				padding: 0 10px;
+			}
+			h4 {
+				margin-left: 10px;
+			}
+			max-height: 0;
+			overflow: hidden;
+			transition: all 0.5s ease-in-out;
+			background-color: $menuItemColor;
+		}
+		&.menuOpen{
+			.menuItemList {
+				padding: 10px 0;
+				max-height: 1000px;
+			}
+			.menuItemListPadding {
+				padding: 10px 15px;
+				max-height: 1000px;
+			}
+			& .menuTitle {
+				border-bottom: 0;
+		        box-shadow: 0px -3px 3px 0px rgba(124,36,21,0.7), 0px 3px 3px 0px rgba(124,36,21,0.7);
+			    position: relative;
+		        width: 101%;
+    			margin-left: -0.5%;
+			}
+		}
+	}
+
+	.savedPageMenu {
+		.loginRequired {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: rgba(180, 180, 180, 0.5);
+			text-align: right;
+			padding: 2rem;
+			margin: 0;
+		}
+		.savePageButton {
+			position: absolute;
+			height: 80%;
+			top: 10%;
+			right: 1%;
+			* {
+				margin: 0;
+			}
+		}
+	}
+}
+
+.movieListItem {
+	$searchButtonColor: #1DE9B6;
+	$updateButtonColor: #FFEA00;
+	$listItemColor: #484141;
+	padding: 5px 5px 5px 25px;
+	strong {
+		cursor: pointer;
+	}
+	&>span:last-of-type, &>span:nth-last-of-type(2) {
+		cursor: pointer;
+		float: right;
+		background-color: $searchButtonColor;
+	    color: #FF7043;
+		padding: 0 10px;
+	    transition: all 2s ease-in-out;
+    	max-width: 29px;
+		&:after {
+			display: none;
+			content: 'earch';
+		}
+		&:hover {
+			max-width: 999px;
+		}
+		&:hover:after {
+			display: inline;
+		}
+	}
+	&>span:nth-last-of-type(2) {
+		float: right;
+		background-color: $updateButtonColor;
+		color: #ff00d0;
+		&:after {
+			display: none;
+			content: 'pdate';
+		}
+	}
+	&:nth-of-type(2n) {
+		background-color: $listItemColor;
+	}
+	&:nth-of-type(2n+1) {
+		background-color: lighten($listItemColor, 10%);
+	}
+}
+
+.hidden {
+	display: none;
+}

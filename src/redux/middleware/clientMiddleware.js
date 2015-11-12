@@ -12,7 +12,7 @@ export default function clientMiddleware(client) {
       const [REQUEST, SUCCESS, FAILURE] = types;
       next({...rest, type: REQUEST});
       return promise(client).then(result => {
-        if (postprocess && typeof postprocess === 'function') {
+        if (typeof postprocess === 'function') {
           return postprocess(result);
         }
         return result;

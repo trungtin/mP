@@ -16,8 +16,8 @@ export default class MovieCarousel extends Component {
   }
   render() {
     const settings = {
-      infinite: false,
       speed: 500,
+      infinite: false,
       useCss: true,
       centerMode: false,
       draggable: true,
@@ -46,10 +46,10 @@ export default class MovieCarousel extends Component {
     const styles = require('./MovieCarousel.scss');
     const {movies, display} = this.props; // eslint-disable-line no-shadow
     const moviesArr = movies.map(function mapping(movie, index) {
-      return <div key={index}><MovieBlock movie={movie} key={index} display={display}/><h1>{index}</h1></div>;
+      return <div key={index}><MovieBlock movie={movie} key={index} display={display}/></div>;
     });
     return (
-      <Slider {...settings} className={styles.carousel}>
+      <Slider {...settings} className={styles.carousel + ' ' + styles.curved + ' ' + styles['curved-hz-2']}>
         {moviesArr}
       </Slider>
     );

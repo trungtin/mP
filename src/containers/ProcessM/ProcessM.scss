@@ -1,16 +1,44 @@
-.counterBox {
-	font-size: 2rem;
-	padding: auto;
+@import 'src/sass/_bits.scss';
+
+.popover {
 	position: fixed;
-	bottom: 10vh;
-	right: 25vw;
-	max-width: 5vw;
-	overflow:auto; 
-	color: white;
-	background-color: deepskyblue;
-	border-radius: 10%;
-	p {
-		margin: auto 0.5rem;
-		text-align: center;
+}
+
+.content {
+	margin: 5vh 0;
+	column-count: 1;
+	column-gap: 0;
+	column-rule: 3px dashed #bfbfbf;
+	@include breakpoint(phablet) {
+		margin: 5vh -5vw;
+		column-count: 2;
+		column-gap: 2;
+	}
+	@include breakpoint(laptop) {
+		
+		margin: 5vh -10vw;
+		column-count: 4;
+		column-gap: 3;
+	}
+}
+
+.playModal {
+	width: 90vw;
+}
+
+.qualitySelector {
+	float: right;
+	margin-right: 17.5%;
+	div {
+		display: inline;
+	}
+	input[type=checkbox] {
+		display: none;
+		&+span {
+			color: #bfbfbf;
+		}
+		&:checked+span {
+			color: red;
+		}
 	}
 }

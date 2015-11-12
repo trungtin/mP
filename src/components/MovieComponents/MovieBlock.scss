@@ -13,24 +13,41 @@
     padding: 0;
     text-shadow: 0px 1px 0 #ab5414;
     position: absolute;
-    z-index: 1;
+    z-index: 10;
     display:block;
     left: 0px;
     overflow: hidden;
   }
-  .starRatingsBottom { z-index: 0; }
+  .starRatingsBottom { z-index: 9; }
 }
 
 .plusCircle {
   display: none;
+  cursor: pointer;
   color: rgba(white, 0.3);
   transition: color 0.3s ease-in-out;
+  position: absolute;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   &:hover {
     color: rgba(white, 0.9);
   }
 }
 
 .movieBlock {
+  position: relative;
+  padding: 5px 0;
+  text-align: center;
+  img {
+    border-radius: 8px;
+    box-shadow: 0 0 5px black;
+  }
+}
+
+.moviePoster {
+  display: inline-block;
   &:hover .plusCircle {
     display: inline;
   }

@@ -24,16 +24,21 @@ export default function reducer(state = initialState, action = {}) {
         loading: true
       };
     case LOAD_SUCCESS:
-      const data = _.merge(state.data, action.result, (a, b) => {
-        if (Array.isArray(a)) {
-          return a.concat(b);
+      let data;
+      action.result.orders && action.result.orders.forEach(order => {
+        if (!state.data[order] || action.result.offset >= state.data[order].length) {
+          data = _.merge(state.data, {[order]: action.result.data[order]}, (a, b) => {
+            if (Array.isArray(a)) {
+              return a.concat(b);
+            }
+          });
         }
       });
       return {
         ...state,
         loading: false,
         loaded: true,
-        data: data,
+        data: data || state.data,
         displaying: null
       };
     case LOAD_FAIL:
@@ -45,38 +50,48 @@ export default function reducer(state = initialState, action = {}) {
       };
     case GET_MEDIA:
       return {
-        ...state
+        ...state,
+        getting: true,
+        getted: false
       };
     case GET_MEDIA_SUCCESS:
       return {
         ...state,
+        getting: false,
+        getted: true,
         media: action.result
       };
     case GET_MEDIA_FAIL:
       return {
         ...state,
+        getting: false,
+        getted: false,
         error: action.error
       };
     case DISPLAY:
       if (state.displaying && action.movie.id === state.displaying.id) {
         return {
-          ...state
+          ...state,
+          playUrls: null
         };
       }
       return {
         ...state,
+        playUrls: null,
         displaying: action.movie
       };
     case PLAY:
       return {
         ...state,
-        playing: action.urls
+        playUrls: action.urls,
+        displaying: null,
+        error: action.error
       };
     case CLOSE:
       return {
         ...state,
         displaying: null,
-        playing: null
+        playUrls: null
       };
     default:
       return state;
@@ -89,7 +104,6 @@ export function isLoaded(globalState) {
 
 export function load(requireObject = {order: '', limit: '', offset: ''}) {
   const {order, limit, offset} = requireObject;
-  console.log(require('util').inspect(requireObject));
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: (client) => client.get('/movie/load?' + qs.stringify({order: order || '', limit: limit || '', offset: offset || ''}))
@@ -117,10 +131,20 @@ export function getMedia(id) {
   };
 }
 
-export function play(urls) {
+export function play(media) {
+  let urls;
+  let err;
+  if (media.permanent_url && media.permanent_url.length !== 0) {
+    urls = media.permanent_url;
+  } else if (media.temporary_url && media.temporary_url.length !== 0) {
+    urls = media.temporary_url;
+  } else {
+    err = 'NO WORKING URL!';
+  }
   return {
     type: PLAY,
-    urls: urls
+    urls: urls || [],
+    error: err || ''
   };
 }
 

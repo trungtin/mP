@@ -1,5 +1,5 @@
 {
-  "extends": "eslint-config-airbnb",
+  "extends": "airbnb",
   "env": {
     "browser": true,
     "node": true,
@@ -19,12 +19,19 @@
     "indent": [2, 2, {"SwitchCase": 1}],
     "no-console": 0,
     "no-alert": 0,
-    // My rules
+    // additional rules
     "prefer-const": 0,
     "no-unused-vars": 1,
     "id-length": 0,
     "space-infix-ops": 1,
-    "no-else-return": 0
+    "no-else-return": 0,
+    "one-var": 0,
+    "no-trailing-spaces": 0,
+    "quotes": 1,
+    "no-var": 0,
+    "no-loop-func": 1,
+    // Eslint mismatch a function call to be a expression
+    "no-unused-expressions": 0
   },
   "plugins": [
     "react"
@@ -37,5 +44,8 @@
     "__DEVTOOLS__": true,
     "socket": true,
     "webpackIsomorphicTools": true
+  },
+  "ecmaFeatures": {
+    "jsx": true
   }
 }

@@ -1,89 +1,62 @@
 import Passport from 'passport'
 var Strategy = require('passport-local')
-import User from '../../Model/User'
+import { user as User } from '../../Model'
+import _ from 'lodash'
 
-// class Auth extends Passport {
+let instance
 
-//   constructor () {
-//     super()
-//     super.serializeUser(function (user, done) {
-//     done(null, user.id)
-//     })
-
-//     super.deserializeUser(function (id, done) {
-//       User.findById(id).then((user)=>{
-//         done(null, user)
-//       }, (error)=>{
-//         done(error)
-//       })
-//     })
-  
-//     super.use(new Strategy({
-//       usernameField: 'email',
-//       passwordField: 'password'
-//     },
-//     function (email, password, done) {
-//       User.findOne({
-//         where: {
-//           email: email
-//         }
-//       }).then((user)=>{
-//         if (user === null) {
-//           return done(null, false, {message: 'This email is not registered'})
-//         }
-  
-//         if (!user.authenticate(password)) {
-//           return done(null, false, {message: 'Invalid login or password'})
-//         }
-  
-//         return done(null, user)
-//       })
-//     }))
-//   }
-  
-// }
-let instance = null
-    
-export default function () {
+export default function pp () {
   if (instance) {
     return instance
   }
-  Passport.serializeUser(function (user, done) {
-    done(null, user.id)
+  Passport.serializeUser((user, done) => {
+    done(null, user.dataValues.id)
   })
-    
-  Passport.deserializeUser(function (id, done) {
-    User.findById(id).then((user)=>{
-      done(null, user)
-    }, (error)=>{
+
+  Passport.deserializeUser((id, done) => {
+    User.findOne({
+      where: {
+        id
+      }
+    }).then((user) => {
+      console.log('deserialize user: ', user.dataValues)
+      done(null, user.dataValues)
+    }, (error) => {
       done(error)
     })
   })
-  
+
   Passport.use(new Strategy({
-    usernameField: 'email',
+    usernameField: 'username',
     passwordField: 'password',
     passReqToCallback: true
-    },
-    function (req, email, password, done) {
-      // User.findOne({
-      //   where: {
-      //     email: email
-      //   }
-      // }).then((user)=>{
-      //   if (user === null) {
-      //     return done(null, false, {message: 'This email is not registered'})
-      //   }
-    
-      //   if (!user.authenticate(password)) {
-      //     return done(null, false, {message: 'Invalid login or password'})
-      //   }
-    
-      //   return done(null, user)
-      // })
-      return done(null,email)
+  },
+    (req, username, password, done) => {
+      let email = username.match(/.+@.+\..+/i)
+      username = email ? null : username
+
+      User.findOne({
+        where: {
+          $or: {
+            username,
+            email
+          }
+        }
+      }).then((user) => {
+        if (user === null) {
+          done(null, false, {message: 'This username/email has not been registered'})
+        }
+
+        if (!user.authenticate(password)) {
+          done(null, false, {message: 'Invalid username or password'})
+        }
+
+        done(null, user)
+      }).catch(err => {
+        done(err)
+      })
     })
   )
   instance = Passport
-  return instance
+  return pp()
 }

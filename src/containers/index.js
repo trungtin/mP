@@ -9,3 +9,4 @@ export Survey from './Survey/Survey';
 export NotFound from './NotFound/NotFound';
 export Movie from './Movie/Movie';
 export ProcessM from './ProcessM/ProcessM';
+export Register from './Register/Register';

@@ -7,6 +7,9 @@ const LOGIN_FAIL = 'my-app/auth/LOGIN_FAIL';
 const LOGOUT = 'my-app/auth/LOGOUT';
 const LOGOUT_SUCCESS = 'my-app/auth/LOGOUT_SUCCESS';
 const LOGOUT_FAIL = 'my-app/auth/LOGOUT_FAIL';
+const REGISTER = 'my-app/auth/REGISTER';
+const REGISTER_SUCCESS = 'my-app/auth/REGISTER_SUCCESS';
+const REGISTER_FAIL = 'my-app/auth/REGISTER_FAIL';
 
 const initialState = {
   loaded: false
@@ -68,6 +71,21 @@ export default function reducer(state = initialState, action = {}) {
         loggingOut: false,
         logoutError: action.error
       };
+    case REGISTER:
+      return {
+        ...state
+      };
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        user: action.result.user,
+        message: action.result.message
+      };
+    case REGISTER_FAIL:
+      return {
+        ...state,
+        registerError: action.error
+      };
     default:
       return state;
   }
@@ -84,13 +102,20 @@ export function load() {
   };
 }
 
-export function login(name) {
+export function login(authBody) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: (client) => client.post('/login', {
-      data: {
-        name: name
-      }
+      data: authBody
+    })
+  };
+}
+
+export function register(ob) {
+  return {
+    types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
+    promise: (client) => client.post('/register', {
+      data: ob
     })
   };
 }

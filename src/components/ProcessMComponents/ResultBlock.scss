@@ -1,10 +1,112 @@
-.stored {
-	background: repeating-linear-gradient(
-		45deg,
-		#ffe92b,
-		#ffe92b 2px,
-		#515151 2px,
-		#515151 20px
-	);
-	color: white;
+@import 'src/sass/_bits.scss';
+
+
+.resultBlock {
+	display: inline-block;
+	width: 90%;
+	margin: 1vw 5%;
+	text-align: center;
+	p {
+		clear: both;
+		word-wrap: break-word;
+	}
+	span {
+		text-align: right;
+	}
+	img {
+		width: 100%;
+	}
+	.checkMark {
+		display: none;
+	}
+	&.stored {
+		.checkMark {
+			display: inline-block;
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			color: green;
+		}
+	}
+}
+
+.ownerLink {
+	float: left;
+	text-align: left;
+	a {
+		display: block;
+	}
+}
+
+$menuItemColor: #484141;;
+.subMenuContainer {
+	float: right;
+	position: relative;
+	i {
+		cursor: pointer;
+		transition: transform 0.3s ease-in-out;
+		&:hover {
+			color: grey;
+		}
+	}
+	&>.subMenu {
+		display: none;
+	}
+	&.subMenuOpen {
+		i {
+			transform: rotate(180deg);
+		}
+		&>.subMenu  {
+			color: white;
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 2rem;
+			background-color: black;
+			border-radius: 0.5rem;
+			padding: 0;
+			z-index: 10;
+			&>li {
+				cursor: pointer;
+				padding: 0.8rem;
+				white-space: nowrap;
+				background-color: $menuItemColor;
+				&:hover {
+					background-color: darken($menuItemColor, 10%);
+				}
+				&:nth-of-type(2n) {
+					background-color: lighten($menuItemColor, 10%);
+					&:hover {
+						background-color: darken($menuItemColor, 10%);
+					}
+				}
+				&.checkedSubMenu {
+					background-color: #00ceaf;
+					&:hover {
+						background-color: #009e86;
+					}
+				}
+			}
+		}
+	}
+
+	.addMetaMenu {
+		margin-top: 1rem;
+		ul {
+			padding: 0;
+			li {
+				color: #474747;
+				background-color: white;
+				padding: 0.8rem;
+				white-space: nowrap;
+				&:hover {
+					background-color: #9b9b9b;
+				}
+			}
+		}
+	}
+}
+
+.menuHidden {
+	display: none;
 }

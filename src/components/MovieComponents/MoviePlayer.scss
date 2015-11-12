@@ -1,0 +1,9 @@
+.video-player {
+	padding: 25px 0;
+	border: solid 1px #EFEFEF;
+	box-shadow: 0px 0px 10px #000 inset;
+	::cue {
+		background-color: rgba(black, 0.3);
+		line-height: 3;
+	}
+}
