@@ -1,27 +1,15 @@
 {
-  "name": "react-redux-universal-hot-example",
-  "description": "Example of an isomorphic (universal) webapp using react redux and hot reloading",
-  "author": "Erik Rasmussen <rasmussenerik@gmail.com> (http://github.com/erikras)",
+  "name": "mP",
+  "description": "",
+  "author": "Tran Trung Tin <trantrungtin1991@gmail.com>",
   "license": "MIT",
   "version": "0.0.5",
   "repository": {
     "type": "git",
-    "url": "https://github.com/erikras/react-redux-universal-hot-example"
+    "url": ""
   },
-  "homepage": "https://github.com/erikras/react-redux-universal-hot-example",
-  "keywords": [
-    "react",
-    "isomorphic",
-    "universal",
-    "webpack",
-    "express",
-    "hot reloading",
-    "react-hot-reloader",
-    "redux",
-    "starter",
-    "boilerplate",
-    "babel"
-  ],
+  "homepage": "",
+  "keywords": [],
   "main": "bin/server.js",
   "scripts": {
     "start": "concurrent --kill-others \"npm run start-prod\" \"npm run start-prod-api\"",
@@ -42,6 +30,7 @@
       "env": {
         "NODE_PATH": "./src",
         "NODE_ENV": "production",
+	"PORT": 3000,
         "APIPORT": 3030
       }
     },
@@ -81,8 +70,10 @@
   "dependencies": {
     "async": "^1.4.2",
     "autoresponsive-react": "^1.1.8",
+    "axios": "^0.7.0",
     "babel": "5.8.23",
     "babel-plugin-typecheck": "1.3.0",
+    "bluebird": "^3.0.5",
     "body-parser": "1.14.1",
     "compression": "1.6.0",
     "express": "4.13.3",
@@ -92,6 +83,7 @@
     "http-proxy": "1.11.2",
     "less": "2.5.3",
     "less-loader": "2.2.1",
+    "lodash": "^3.10.1",
     "lru-memoize": "1.0.0",
     "map-props": "1.0.0",
     "multireducer": "1.0.1",

@@ -7,5 +7,6 @@ module.exports = {
   production: {
     isProduction: true,
     apiPort: process.env.APIPORT,
+    db: 'postgres://postgres:alphabeta@localhost/movie'
   }
 }[process.env.NODE_ENV || 'development'];
