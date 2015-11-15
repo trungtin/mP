@@ -26,7 +26,17 @@ export default class ResultBlock extends Component {
     showAlert: false
   }
   componentDidMount() {
-    const {result} = this.props;
+    this.updateStoreValue(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.result && nextProps.result !== this.props.result) {
+      this.updateStoreValue(nextProps);
+    }
+  }
+
+  updateStoreValue(props) {
+    const {result} = props;
     let permanentUrl = result.media$group.media$content.map((content) => {
       if (content.medium === 'video' && content.url.match(/\/redirector.google/i) === null) {
         return content.url;
@@ -40,6 +50,7 @@ export default class ResultBlock extends Component {
       video_id: result.id.$t.match(/photoid\/([a-zA-Z0-9]+)/i)[1],
       quality: result.media$group.media$content[result.media$group.media$content.length - 1].height
     };
+    console.log(this.storeValue);
     if (permanentUrl.length > 0) {this.storeValue.permanent_url = permanentUrl;}
   }
 
@@ -68,6 +79,7 @@ export default class ResultBlock extends Component {
     this.props.openPlayModal(this.urls);
   }
   goToUser(e) {
+    console.log(this.storeValue);
     e.preventDefault();
     this.props.goTo(this.storeValue.user_id);
   }
