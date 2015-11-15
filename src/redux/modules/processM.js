@@ -98,6 +98,7 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         recents: (state.data && state.data.meta && state.data.results.length > 0) ? state.recents.concat(state.data.meta) : state.recents,
+        savePageSuccess: false,
         data: state.cached,
         cached: null,
         displayMode: '',

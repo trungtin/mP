@@ -42,3 +42,21 @@
 		}
 	}
 }
+
+.confirmStoreButton {
+	:global(.form-group) {
+		display: inline;
+	}
+	:global(.checkbox) {
+		float: left;
+	}
+	input[type=checkbox] {
+		display: none;
+		&+span {
+			color: #bfbfbf;
+		}
+		&:checked+span {
+			color: red;
+		}
+	}
+}

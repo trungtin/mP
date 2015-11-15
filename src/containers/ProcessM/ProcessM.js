@@ -74,6 +74,7 @@ export default class ProcessM extends Component {
       this.forceUpdate();
     }
     if (nextProps.results !== this.props.results) {
+      this.refs.sidebar.refs.wrappedInstance.updateSaveButton();
       this.storeValues = [];
     }
   }
@@ -275,7 +276,7 @@ export default class ProcessM extends Component {
           <div className={require('sass/whirly.scss')['whirly-loader']} />
         }
         <Sidebar length={this.storeValues.length} resultsLength={resultsLength} resultsMeta={resultsMeta} updateMeta={updateMeta} toggleSidebar={::this.toggleSidebar}
-          updateMovieUrlState={this.props.updateMovieUrlState} updateUrlStateSuccess={this.props.updateUrlStateSuccess}/>
+          updateMovieUrlState={this.props.updateMovieUrlState} updateUrlStateSuccess={this.props.updateUrlStateSuccess} ref="sidebar"/>
       </div>
     );
   }

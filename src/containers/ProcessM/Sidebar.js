@@ -93,6 +93,11 @@ export default class Sidebar extends Component {
     }
   }
   
+  updateSaveButton() {
+    ReactDOM.findDOMNode(this.refs.savePageButton).disabled = false;
+    this.setState({savingPage: false, pageSaved: false});
+  }
+
   handleEditMeta(result) {
     this.props.updateMeta(result);
     this.setState({showEditMeta: false});

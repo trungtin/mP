@@ -1,4 +1,4 @@
-import {sequelize, Sequelize, movie as Movie } from 'Model'
+import {sequelize, Sequelize, movie as Movie} from 'Model'
 import async from 'async'
 import _ from 'lodash'
 import qs from 'querystring'

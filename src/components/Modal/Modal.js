@@ -34,8 +34,8 @@ export default class MyModal extends Component {
             {modalBody}
           </Modal.Body>
           <Modal.Footer>
-            {modalCloseButton && <Col md={2} mdOffset={8} onClick={::this.close}>{modalCloseButton}</Col>}
-            {modalFooter && <Col md={2}>{modalFooter}</Col>}
+            {modalCloseButton && <Col md={2} mdOffset={6} onClick={::this.close}>{modalCloseButton}</Col>}
+            {modalFooter && <Col md={4}>{modalFooter}</Col>}
           </Modal.Footer>
         </Modal>
       </div>

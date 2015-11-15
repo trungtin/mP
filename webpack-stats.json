@@ -1,1 +1,124 @@
-{"javascript":{"main":"/dist/main-524bc2ad438fc4592a7c.js"},"styles":{"main":"/dist/main-524bc2ad438fc4592a7c.css"},"images":{"./src/containers/Home/logo.png":"/dist/306e63778b1938460116c29f334edf8b.png"},"style_modules":{"./src/containers/ProcessM/ProcessM.scss":{"popover":"_2lJR2hmmRFOBOZ03xadM8z","content":"_3Y-CxKcJFBueo57RZUkY6M","playModal":"aTsjTWSeWmKu4LvcwpKJx","qualitySelector":"_2Hj4NMDtym_VRt9QOeVbyx"},"./src/containers/Widgets/Widgets.scss":{"widgets":"_2A4kYijhLiCzEWF3QRlvP6","refreshBtn":"_27NoTnY5jDhzHwm7KG6JIq","idCol":"_1ctbMePgJYs2mHKlI-SxuT","colorCol":"_34HX7Sh7qGvk0gRrJQjbR3","sprocketsCol":"_3C3zm53O2bMkt87bO6XhsT","ownerCol":"pD3m1x9azJoOH5d1YvA40","buttonCol":"_1JQKGnZY-umi7m1qVTh6ZK","saving":"_3HHRTtTqrKdiPdefnehhf1"},"./src/sass/global-styles.scss":{"blinking":"_1BTKRgzrj7gaOEyvGy6CHM","blink":"_2w0lG8k7Yw5mJ1sAnKlQZ8"},"./src/components/MovieComponents/MovieBlock.scss":{"starRatings":"XFrzu5IZSzJFRrGnVIMP-","starRatingsTop":"_1vY7XgPJa2dkTlkYoGIPt1","starRatingsBottom":"_1lN0K_nqMQkmADNVrTtnjT","plusCircle":"_1Q-THTLkbcJJPRg-wu7IsZ","movieBlock":"J_S1QNSz64bZpIYEllccu","moviePoster":"_15Key1pkKcMZ0HcwJyxJyN"},"./src/components/MovieComponents/MovieCarousel.scss":{"carousel":"_2EYj1o8PACR_yNMpkq8lwH","curved":"_3cZqa7B9m8fECiM9R8pF3u","curved-hz-2":"_1XioruDXK7AMWajDVff5CA"},"./src/components/MovieComponents/MovieDisplay.scss":{"display":"XI_pfeHUMSELgl1zH4eba","poster":"oCiLj-64sb_XN-fOj7d49"},"./src/components/MovieComponents/MoviePlayer.scss":{"video-player":"dlQC4MhrMv4jGVPR9Vn8j"},"./src/components/ProcessMComponents/ResultBlock.scss":{"resultBlock":"_17qbAST4Eix8DA-eV3Kgv2","checkMark":"_279-nvM539Q1ZxuO_UKQp-","stored":"_2SVE_Fyo534qrUTH-ETyPA","ownerLink":"_2Y3Cb7f_OyQYmpWn6Tue4o","subMenuContainer":"_1flFvndMlsheuo0AK0V7h8","subMenu":"Aa5ToEKWGarZQIVp0czPY","subMenuOpen":"_3Nab3nqG4MnJgnbS5HDMRC","checkedSubMenu":"_3TcyplaABjh5faflR92bCS","addMetaMenu":"_3Q2lMcqUnqj-z4TXnTTDEl","menuHidden":"_3-rpetLr-fgEs1Z0vxdm3x"},"./src/components/SurveyForm/SurveyForm.scss":{"inputGroup":"uHVUR5YoCUc9cMXhXrKa3","flags":"_1zEBtIDyUYhce_Rxnazs0C","active":"_3rVNE4Y5IxvnLtBRoUK5SV","dirty":"_1Q2Fy4zZ9wJiWdJ8zlPWaS","visited":"_1tmPDmmW1CbgIOpxEMONCz","touched":"_15GFQuRVkHHgQ0E0_RjjdV","cog":"_1219TbOW29iFlYGI9-gStX"},"./src/containers/App/App.scss":{"app":"_2KKuTblKp5tDQsgCSTUp2Y","brand":"_1y7N_QVhjEAZjiYkrGNgk-","appContent":"_3e-7ml6gXE0CBNWUNQx9sZ"},"./src/containers/Chat/Chat.scss":{"chat":"_1PWJWD7TKzyThbGbi-8OUa"},"./src/containers/Home/Home.scss":{"home":"_5mXk8lM_mBxGT9UIBtzv0","masthead":"_1r9jH4LDRtdhpvrB_EE5VQ","logo":"HngFzpvndWrB0lMdK0Ha4","counterContainer":"bMf2Sh3xMxRBb1GaJd4TX"},"./src/containers/Login/Login.scss":{"loginPage":"_2X8nupxouEFnLsW--sZ7h5"},"./src/containers/Movie/Movie.scss":{"movie-content":"_32TAIVHqxQvFzLOofrXhyj","categoryName":"_2WwvMoKPH8la6wFy0CfVUd","extended":"_1JQ3W7820eCaWEEu-0t57m","extendedViewTransform":"qjLWDZyIQZZYbQ2Q_fGgY"},"./src/containers/ProcessM/Sidebar.scss":{"sidebar":"_19QwxYRCMU39-qpcvk4TEi","sidebarPusher":"_1k6rCHWdcjb8ZYwl11IWlA","sidebarOpen":"_3SAdKjVyDvUGApjZBXzAQf","counterButton":"_1wCNMJurs-HmsePGKAYxnR","resultList":"G3eA56mgoc-InJDkm1mD_","selectState":"_2wOhQDiXTgZiK8yWx4dwfJ","content":"oVZcZI05IIB1n3g3qZAC9","menu":"_3hjfmYWI2HFZ7TUfC-jeGk","menuTitle":"Ujpo2Erja4aE3-4PjuQ5s","menuItemList":"wFzc887KA3eSKGLp94Vmb","metaDisplay":"cQGtVyIl59tV4BKfvm10A","menuOpen":"_1O2KXfvjbqRdMM1yzGQw9G","menuItemListPadding":"gc9Vigsv7LXZ-ILfvWlin","savedPageMenu":"_19SwZT3SMxoK4uQffbzm27","loginRequired":"_1rIVgxhuVkog9mucvr781a","savePageButton":"_2pXs1F12OhTo68OteTOGGx","movieListItem":"GKLqwhQDpOS8EG28P-dGb","hidden":"_26EmAIt27xg2eCqUZbrJSh"},"./src/containers/Register/Register.scss":{"registerPage":"iFHMpZ6k5B_S19G8_XClx","valid":"_2e12TOaz6N8KqbE75Es69D","invalid":"_2q3ACPrwXwuzWKxgD_DLXy"},"./src/sass/whirly.scss":{"whirly-loader":"En5Ej8u0KmBWmBVDMeR3y"}}}
+{
+  "javascript": {
+    "main": "http://localhost:3001/dist/main-419b40a3b8cd5a5fb246.js"
+  },
+  "styles": {},
+  "images": {
+    "./src/containers/Home/logo.png": "http://localhost:3001/dist/306e63778b1938460116c29f334edf8b.png"
+  },
+  "style_modules": {
+    "./src/containers/App/App.scss": {
+      "app": "app___2LF5i",
+      "brand": "brand___20_t0",
+      "appContent": "appContent___3kCD5"
+    },
+    "./src/containers/Chat/Chat.scss": {
+      "chat": "chat___-Slyy"
+    },
+    "./src/containers/Home/Home.scss": {
+      "home": "home___3kGik",
+      "masthead": "masthead___3HbLE",
+      "logo": "logo___2M5M4",
+      "counterContainer": "counterContainer___1vjEZ"
+    },
+    "./src/components/SurveyForm/SurveyForm.scss": {
+      "inputGroup": "inputGroup___2TvEi",
+      "flags": "flags___C-VuX",
+      "active": "active___2RAG1",
+      "dirty": "dirty___1ZXcm",
+      "visited": "visited___1YzZB",
+      "touched": "touched___2F-qH",
+      "cog": "cog___xN0Fc"
+    },
+    "./src/containers/Widgets/Widgets.scss": {
+      "widgets": "widgets___2Abvu",
+      "refreshBtn": "refreshBtn___2lvZv",
+      "idCol": "idCol___Tu_lJ",
+      "colorCol": "colorCol___3kCMi",
+      "sprocketsCol": "sprocketsCol___23Iqu",
+      "ownerCol": "ownerCol___2j3WS",
+      "buttonCol": "buttonCol___CkTAH",
+      "saving": "saving___sti8b"
+    },
+    "./src/components/MovieComponents/MovieBlock.scss": {
+      "starRatings": "starRatings___2XVzT",
+      "starRatingsTop": "starRatingsTop___1klKS",
+      "starRatingsBottom": "starRatingsBottom___zFsxt",
+      "plusCircle": "plusCircle___V0PmB",
+      "movieBlock": "movieBlock___1Qlmv",
+      "moviePoster": "moviePoster___31anL"
+    },
+    "./src/components/MovieComponents/MovieCarousel.scss": {
+      "carousel": "carousel___2uTHK",
+      "curved": "curved___1KmxC",
+      "curved-hz-2": "curved-hz-2___2c039"
+    },
+    "./src/components/MovieComponents/MovieDisplay.scss": {
+      "display": "display___3hLBL",
+      "poster": "poster___1KY3B"
+    },
+    "./src/sass/global-styles.scss": {
+      "blinking": "blinking___NR9jE",
+      "blink": "blink___5DkQh"
+    },
+    "./src/components/MovieComponents/MoviePlayer.scss": {
+      "video-player": "video-player___3q3n4"
+    },
+    "./src/components/ProcessMComponents/ResultBlock.scss": {
+      "resultBlock": "resultBlock___4E56r",
+      "checkMark": "checkMark___Tlyo1",
+      "stored": "stored___1fVbp",
+      "ownerLink": "ownerLink___2INRL",
+      "subMenuContainer": "subMenuContainer___3EhOZ",
+      "subMenu": "subMenu___3UPrk",
+      "subMenuOpen": "subMenuOpen___2YEWv",
+      "checkedSubMenu": "checkedSubMenu___2coaH",
+      "addMetaMenu": "addMetaMenu___2ZTyx",
+      "menuHidden": "menuHidden___1P9BC"
+    },
+    "./src/containers/Login/Login.scss": {
+      "loginPage": "loginPage___9l4N4"
+    },
+    "./src/containers/Movie/Movie.scss": {
+      "movie-content": "movie-content___3wEqj",
+      "categoryName": "categoryName___-efOr",
+      "extended": "extended___22vXU",
+      "extendedViewTransform": "extendedViewTransform___CFqFF"
+    },
+    "./src/containers/ProcessM/Sidebar.scss": {
+      "sidebar": "sidebar___wJ4F_",
+      "sidebarPusher": "sidebarPusher___p83HW",
+      "sidebarOpen": "sidebarOpen___1FRFm",
+      "counterButton": "counterButton___1TLT5",
+      "resultList": "resultList___1My7F",
+      "selectState": "selectState___2B1FY",
+      "content": "content___lDpC1",
+      "menu": "menu___2qjug",
+      "menuTitle": "menuTitle___34kQl",
+      "menuItemList": "menuItemList___3oeBC",
+      "metaDisplay": "metaDisplay___3QoCd",
+      "menuOpen": "menuOpen___1hGgW",
+      "menuItemListPadding": "menuItemListPadding___1V4Be",
+      "savedPageMenu": "savedPageMenu___1otYV",
+      "loginRequired": "loginRequired___34UKC",
+      "savePageButton": "savePageButton___1myCx",
+      "movieListItem": "movieListItem___17QPF",
+      "hidden": "hidden___1HXcH"
+    },
+    "./src/containers/ProcessM/ProcessM.scss": {
+      "popover": "popover___2lC3E",
+      "content": "content___2HL-d",
+      "playModal": "playModal___RnA3y",
+      "qualitySelector": "qualitySelector___15wpg",
+      "confirmStoreButton": "confirmStoreButton___2swPj"
+    },
+    "./src/sass/whirly.scss": {
+      "whirly-loader": "whirly-loader___3g7VT"
+    },
+    "./src/containers/Register/Register.scss": {
+      "registerPage": "registerPage___1gP7l",
+      "valid": "valid___16tkG",
+      "invalid": "invalid___mUtSI"
+    }
+  }
+}
