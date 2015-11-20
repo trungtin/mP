@@ -10,7 +10,7 @@ var sequelize = new Sequelize(config.db, {
     min: 0,
     idle: 10000
   },
-  logging: false,
+  // logging: false,
   define: {
     underscored: true
   }  

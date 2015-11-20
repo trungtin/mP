@@ -25,7 +25,7 @@ export function getTopMovies (order = 't_popularity', limit = 20, offset = 0) {
   return Movie.findAll({
     where: {
       url_state: {
-        $gte: 1
+        $in: [1, 2]
       }
     },
     limit: limit,

@@ -1,4 +1,4 @@
-import { movie_url as MovieUrl, sequelize } from 'Model'
+import { sequelize, Sequelize, movie_url as MovieUrl } from 'Model'
 import _ from 'lodash'
 import request from 'axios'
 
@@ -9,16 +9,11 @@ export default function play (req) {
 
 export function getMedia (id) {
   return new Promise((resolve, reject) => {
-    MovieUrl.findAll({
-      where: {
-        movie_id: id,
-        is_work: true
-      },
-      order: [
-        // [sequelize.fn('ARRAY_LENGTH', sequelize.col('permanent_url'), 1), 'ASC'],
-        [sequelize.col('quality'), 'DESC']
-      ]
-    }).then(results => {
+    sequelize.query((`SELECT mu.* FROM movie_urls AS mu
+      WHERE mu.movie_id IN ('${id}') AND mu.is_work = true
+      ORDER BY (original_audio and not foreign_hardcoded_caption) DESC,
+        quality DESC, original_audio DESC, foreign_hardcoded_caption ASC`),
+    {type: Sequelize.QueryTypes.SELECT}).then(results => resolve(results[0]))     /* .then(results => {
       let full = _.partition(results, (result) => {
         if (result.quality > 720) {
           return true
@@ -41,7 +36,7 @@ export function getMedia (id) {
       } else {
         resolve(_.sample(full))
       }
-    })
+    }) */
   })
 }
 
